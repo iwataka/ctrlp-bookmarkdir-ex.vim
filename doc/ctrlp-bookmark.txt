@@ -59,7 +59,8 @@ If this value is non-zero, directories managed by ghq will be registered.
     let g:ctrlp_bookmark_force = 0
 <
 If this value is non-zero, this deletes the bookmark file then registers new
-bookmarks.
+bookmark but spends less time. On Windows, bookmark registration may take not
+a little time, so setting non-zero value to this variable is useful.
 ------------------------------------------------------------------------------
                                                       *g:ctrlp_bookmark_startup*
 >
