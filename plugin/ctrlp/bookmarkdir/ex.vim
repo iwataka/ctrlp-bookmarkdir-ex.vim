@@ -14,6 +14,6 @@ endif
 
 fu! s:on_enter()
   if exists(':CtrlPBookmarkDirAdd') && get(g:, 'ctrlp_bookmark_startup', 1)
-    call ctrlp#bookmarkdir#ex#init(0)
+    silent call ctrlp#bookmarkdir#ex#init(0)
   endif
 endfu
