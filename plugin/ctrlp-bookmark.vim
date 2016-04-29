@@ -33,7 +33,7 @@ fu! s:ctrlp_bookmark_init(bang)
 
   if exists('g:ctrlp_bookmark_paths')
     for path in g:ctrlp_bookmark_paths
-      let dirs = map(split(expand(path)), 's:validate_path(v:val)')
+      let dirs = map(split(expand(path, '\n')), 's:validate_path(v:val)')
       call extend(bookmark_dirs, dirs)
     endfor
   endif
@@ -43,12 +43,12 @@ fu! s:ctrlp_bookmark_init(bang)
   endif
 
   if exists('g:plug_home') && g:ctrlp_bookmark_plug
-    let dirs = map(split(globpath(g:plug_home, '*')), 's:validate_path(v:val)')
+    let dirs = map(split(globpath(g:plug_home, '*'), '\n'), 's:validate_path(v:val)')
     call extend(bookmark_dirs, dirs)
   endif
 
   if executable('ghq') && g:ctrlp_bookmark_ghq
-    let dirs = map(split(system('ghq list -p')), 's:validate_path(v:val)')
+    let dirs = map(split(system('ghq list -p'), '\n'), 's:validate_path(v:val)')
     call extend(bookmark_dirs, dirs)
   endif
 
@@ -74,7 +74,7 @@ fu! s:ctrlp_bookmark_add(force, dirs)
 endfu
 
 fu! s:ctrlp_bookmark_file()
-  return s:ctrlp_cache_dir().'bkd/cache.txt'
+  return s:ctrlp_cache_dir().'/bkd/cache.txt'
 endfu
 
 fu! s:ctrlp_cache_dir()
@@ -83,14 +83,7 @@ fu! s:ctrlp_cache_dir()
 endfu
 
 fu! s:validate_path(path)
-  let path = resolve(fnamemodify(a:path, ':p'))
-  if isdirectory(path)
-    return substitute(path, '\v/*$', '/', '')
-  elseif filereadable(path)
-    return substitute(path, '\v/*$', '', '')
-  else
-    return ''
-  endif
+  return substitute(resolve(fnamemodify(a:path, ':p')), '\v/*$', '', '')
 endfu
 
 if has('autocmd')
