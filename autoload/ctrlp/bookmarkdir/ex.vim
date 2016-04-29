@@ -47,6 +47,7 @@ fu! ctrlp#bookmarkdir#ex#init(bang)
   endif
 
   call s:ctrlp_bookmark_add(g:ctrlp_bookmark_force, bookmark_dirs)
+  echo 'CtrlP: bookmark reloaded'
 endf
 
 fu! s:ctrlp_bookmark_add(force, dirs)
