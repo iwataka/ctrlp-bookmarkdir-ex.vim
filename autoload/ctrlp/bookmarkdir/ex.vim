@@ -1,7 +1,5 @@
-if &compatible || (exists('g:loaded_ctrlp_bookmark') && g:loaded_ctrlp_bookmark)
-  finish
-endif
-let g:loaded_ctrlp_bookmark = 1
+let s:save_cpo = &cpoptions
+set cpoptions&vim
 
 if !exists('g:ctrlp_bookmark_paths')
   let g:ctrlp_bookmark_paths = []
@@ -18,13 +16,9 @@ endif
 if !exists('g:ctrlp_bookmark_force')
   let g:ctrlp_bookmark_force = 0
 endif
-if !exists('g:ctrlp_bookmark_startup')
-  let g:ctrlp_bookmark_startup = 1
-endif
 
-com! -bang CtrlPBookmarkReload call s:ctrlp_bookmark_init(<bang>0)
-
-fu! s:ctrlp_bookmark_init(bang)
+fu! ctrlp#bookmarkdir#ex#init(bang)
+  " If g:ctrlp_bookmark_force == 1, deleting cache file is not needed
   if a:bang && !g:ctrlp_bookmark_force
     call delete(s:ctrlp_bookmark_file())
   endif
@@ -86,9 +80,5 @@ fu! s:validate_path(path)
   return substitute(resolve(fnamemodify(a:path, ':p')), '\v/*$', '', '')
 endfu
 
-if has('autocmd')
-  autocmd vimrcEx VimEnter *
-        \ if exists(':CtrlPBookmarkDirAdd') && g:ctrlp_bookmark_startup |
-        \ call s:ctrlp_bookmark_init(0) |
-        \ endif
-endif
+let &cpo = s:save_cpo
+unlet s:save_cpo

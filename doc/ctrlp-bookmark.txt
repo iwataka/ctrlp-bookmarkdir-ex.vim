@@ -70,9 +70,9 @@ You want to disable bookmark registration at startup, set 0 to this variable.
 
 ==============================================================================
 COMMAND                                                *ctrlp-bookmark-commands*
-                                           *ctrlp-bookmark-:CtrlPBookmarkReload*
+                                        *ctrlp-bookmark-:CtrlPBookmarkDirReload*
 >
-    :CtrlPBookmarkReload[!]
+    :CtrlPBookmarkDirReload[!]
 <
 Reload bookmarks defined by this. If `!` is followed, the existing bookmarks
 will be discarded. It has no meaning when g:ctrlp_bookmark_force != 0.
