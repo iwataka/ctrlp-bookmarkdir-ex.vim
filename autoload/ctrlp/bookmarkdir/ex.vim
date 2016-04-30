@@ -16,8 +16,17 @@ endif
 if !exists('g:ctrlp_bookmarkdir_ex_force')
   let g:ctrlp_bookmarkdir_ex_force = 0
 endif
+if !exists('g:ctrlp_bookmarkdir_ex_verbose')
+  let g:ctrlp_bookmarkdir_ex_verbose = 1
+endif
+if !exists('g:ctrlp_bookmarkdir_ex_highlight')
+  let g:ctrlp_bookmarkdir_ex_highlight = 'Identifier'
+endif
+if !exists('g:ctrlp_bookmarkdir_ex_message')
+  let g:ctrlp_bookmarkdir_ex_message = 'CtrlP: your bookmarks reloaded'
+endif
 
-fu! ctrlp#bookmarkdir#ex#init(bang)
+fu! ctrlp#bookmarkdir#ex#init(bang, verbose)
   " If g:ctrlp_bookmarkdir_ex_force == 1, deleting cache file is not needed
   if a:bang && !g:ctrlp_bookmarkdir_ex_force
     call delete(s:ctrlp_bookmark_file())
@@ -46,7 +55,11 @@ fu! ctrlp#bookmarkdir#ex#init(bang)
   endif
 
   call s:ctrlp_bookmark_add(g:ctrlp_bookmarkdir_ex_force, bookmark_dirs)
-  echo 'CtrlP: bookmark reloaded'
+  if g:ctrlp_bookmarkdir_ex_verbose && a:verbose
+    exe 'echohl '.g:ctrlp_bookmarkdir_ex_highlight
+    echo g:ctrlp_bookmarkdir_ex_message
+    echohl Normal
+  endif
 endf
 
 fu! s:ctrlp_bookmark_add(force, dirs)

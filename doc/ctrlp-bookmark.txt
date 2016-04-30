@@ -67,6 +67,25 @@ a little time, so setting non-zero value to this variable is useful.
     let g:ctrlp_bookmarkdir_ex_startup = 1
 <
 You want to disable bookmark registration at startup, set 0 to this variable.
+------------------------------------------------------------------------------
+                                                *g:ctrlp_bookmarkdir_ex_verbose*
+>
+    let g:ctrlp_bookmarkdir_ex_verbose = 1
+<
+If this value is non-zero, the message is shown by `:CtrlPBookmarkDirReload`
+command.
+------------------------------------------------------------------------------
+                                              *g:ctrlp_bookmarkdir_ex_highlight*
+>
+    let g:ctrlp_bookmarkdir_ex_highlight = 'Identifier'
+<
+Specifies the highlight group used by this message.
+------------------------------------------------------------------------------
+                                                *g:ctrlp_bookmarkdir_ex_message*
+>
+    let g:ctrlp_bookmarkdir_ex_message = 'CtrlP: your bookmarks reloaded'
+<
+Specifies the message string.
 
 ==============================================================================
 COMMAND                                          *ctrlp-bookmarkdir-ex-commands*
