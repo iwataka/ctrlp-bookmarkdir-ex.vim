@@ -36,9 +36,8 @@ fu! ctrlp#bookmarkdir#ex#init(bang)
     call add(bookmark_dirs, s:validate_path($VIMRUNTIME))
   endif
 
-  if exists('g:plug_home') && g:ctrlp_bookmark_plug
-    let dirs = map(split(globpath(g:plug_home, '*'), '\n'), 's:validate_path(v:val)')
-    call extend(bookmark_dirs, dirs)
+  if exists('g:plugs') && g:ctrlp_bookmark_plug
+    call extend(bookmark_dirs, map(values(g:plugs), 'v:val.dir'))
   endif
 
   if executable('ghq') && g:ctrlp_bookmark_ghq
