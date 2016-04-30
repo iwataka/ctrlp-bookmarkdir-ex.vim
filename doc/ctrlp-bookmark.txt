@@ -1,19 +1,19 @@
-*ctrlp-bookmark.txt* Manage CtrlP bookmarks easily
-*ctrlp-bookmark*
+*ctrlp-bookmarkdir-ex.txt* Manage CtrlP bookmarks easily
+*ctrlp-bookmarkdir-ex*
 
 ==============================================================================
-TOC                                                    *ctrlp-bookmark-contents*
+TOC                                              *ctrlp-bookmarkdir-ex-contents*
 
-    USAGE .......................... |ctrlp-bookmark-usage|
-    OPTIONS ........................ |ctrlp-bookmark-options|
-    COMMANDS ....................... |ctrlp-bookmark-commands|
+    USAGE .......................... |ctrlp-bookmarkdir-ex-usage|
+    OPTIONS ........................ |ctrlp-bookmarkdir-ex-options|
+    COMMANDS ....................... |ctrlp-bookmarkdir-ex-commands|
 
 ==============================================================================
-USAGE                                                     *ctrlp-bookmark-usage*
+USAGE                                               *ctrlp-bookmarkdir-ex-usage*
 
-What you should do is just setting `g:ctrlp_bookmark_paths` option like this:
+What you should do is just setting `g:ctrlp_bookmarkdir_ex_paths` option like this:
 >
-    let g:ctrlp_bookmark_paths = [
+    let g:ctrlp_bookmarkdir_ex_paths = [
           \ 'path/to/bookmark',
           " Wildcard is accepted
           \ 'path/to/root/*'
@@ -28,54 +28,54 @@ This support the following projects:
     ghq (https://github.com/motemen/ghq)
 <
 ==============================================================================
-OPTIONS                                                 *ctrlp-bookmark-options*
-                                                        *g:ctrlp_bookmark_paths*
+OPTIONS                                           *ctrlp-bookmarkdir-ex-options*
+                                                  *g:ctrlp_bookmarkdir_ex_paths*
 >
-    let g:ctrlp_bookmark_paths = []
+    let g:ctrlp_bookmarkdir_ex_paths = []
 <
 This specify the bookmark paths to be registered as CtrlP bookmarks.
 
 ------------------------------------------------------------------------------
-                                                      *g:ctrlp_bookmark_runtime*
+                                                *g:ctrlp_bookmarkdir_ex_runtime*
 >
-    let g:ctrlp_bookmark_runtime = 1
+    let g:ctrlp_bookmarkdir_ex_runtime = 1
 <
 If this value is non-zero, `$VIMRUNTIME` will be registered as a CtrlP bookmark.
 ------------------------------------------------------------------------------
-                                                         *g:ctrlp_bookmark_plug*
+                                                   *g:ctrlp_bookmarkdir_ex_plug*
 >
-    let g:ctrlp_bookmark_plug = 1
+    let g:ctrlp_bookmarkdir_ex_plug = 1
 <
 If this value is non-zero, vim plugins managed by vim-plug will be registered.
 ------------------------------------------------------------------------------
-                                                          *g:ctrlp_bookmark_ghq*
+                                                    *g:ctrlp_bookmarkdir_ex_ghq*
 >
-    let g:ctrlp_bookmark_ghq = 1
+    let g:ctrlp_bookmarkdir_ex_ghq = 1
 <
 If this value is non-zero, directories managed by ghq will be registered.
 ------------------------------------------------------------------------------
-                                                        *g:ctrlp_bookmark_force*
+                                                  *g:ctrlp_bookmarkdir_ex_force*
 >
-    let g:ctrlp_bookmark_force = 0
+    let g:ctrlp_bookmarkdir_ex_force = 0
 <
 If this value is non-zero, this deletes the bookmark file then registers new
 bookmark but spends less time. On Windows, bookmark registration may take not
 a little time, so setting non-zero value to this variable is useful.
 ------------------------------------------------------------------------------
-                                                      *g:ctrlp_bookmark_startup*
+                                                *g:ctrlp_bookmarkdir_ex_startup*
 >
-    let g:ctrlp_bookmark_startup = 1
+    let g:ctrlp_bookmarkdir_ex_startup = 1
 <
 You want to disable bookmark registration at startup, set 0 to this variable.
 
 ==============================================================================
-COMMAND                                                *ctrlp-bookmark-commands*
-                                        *ctrlp-bookmark-:CtrlPBookmarkDirReload*
+COMMAND                                          *ctrlp-bookmarkdir-ex-commands*
+                                  *ctrlp-bookmarkdir-ex-:CtrlPBookmarkDirReload*
 >
     :CtrlPBookmarkDirReload[!]
 <
 Reload bookmarks defined by this. If `!` is followed, the existing bookmarks
-will be discarded. It has no meaning when g:ctrlp_bookmark_force != 0.
+will be discarded. It has no meaning when g:ctrlp_bookmarkdir_ex_force != 0.
 
 ==============================================================================
 vim:tw=78

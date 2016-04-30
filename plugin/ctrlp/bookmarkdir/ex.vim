@@ -13,7 +13,7 @@ if has('autocmd')
 endif
 
 fu! s:on_enter()
-  if exists(':CtrlPBookmarkDirAdd') && get(g:, 'ctrlp_bookmark_startup', 1)
+  if exists(':CtrlPBookmarkDirAdd') && get(g:, 'ctrlp_bookmarkdir_ex_startup', 1)
     silent call ctrlp#bookmarkdir#ex#init(0)
   endif
 endfu

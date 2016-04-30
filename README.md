@@ -4,10 +4,10 @@ Manage CtrlP bookmarks easily!
 
 ## Usage
 
-What you should do is just setting `g:ctrlp_bookmark_paths` option like this:
+What you should do is just setting `g:ctrlp_bookmarkdir_ex_paths` option like this:
 
 ```vim
-let g:ctrlp_bookmark_paths = [
+let g:ctrlp_bookmarkdir_ex_paths = [
       \ 'path/to/bookmark',
       " Wildcard is accepted
       \ 'path/to/root/*'

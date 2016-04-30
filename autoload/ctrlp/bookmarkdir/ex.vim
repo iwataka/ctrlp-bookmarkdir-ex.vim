@@ -1,51 +1,51 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-if !exists('g:ctrlp_bookmark_paths')
-  let g:ctrlp_bookmark_paths = []
+if !exists('g:ctrlp_bookmarkdir_ex_paths')
+  let g:ctrlp_bookmarkdir_ex_paths = []
 endif
-if !exists('g:ctrlp_bookmark_runtime')
-  let g:ctrlp_bookmark_runtime = 1
+if !exists('g:ctrlp_bookmarkdir_ex_runtime')
+  let g:ctrlp_bookmarkdir_ex_runtime = 1
 endif
-if !exists('g:ctrlp_bookmark_plug')
-  let g:ctrlp_bookmark_plug = 1
+if !exists('g:ctrlp_bookmarkdir_ex_plug')
+  let g:ctrlp_bookmarkdir_ex_plug = 1
 endif
-if !exists('g:ctrlp_bookmark_ghq')
-  let g:ctrlp_bookmark_ghq = 1
+if !exists('g:ctrlp_bookmarkdir_ex_ghq')
+  let g:ctrlp_bookmarkdir_ex_ghq = 1
 endif
-if !exists('g:ctrlp_bookmark_force')
-  let g:ctrlp_bookmark_force = 0
+if !exists('g:ctrlp_bookmarkdir_ex_force')
+  let g:ctrlp_bookmarkdir_ex_force = 0
 endif
 
 fu! ctrlp#bookmarkdir#ex#init(bang)
-  " If g:ctrlp_bookmark_force == 1, deleting cache file is not needed
-  if a:bang && !g:ctrlp_bookmark_force
+  " If g:ctrlp_bookmarkdir_ex_force == 1, deleting cache file is not needed
+  if a:bang && !g:ctrlp_bookmarkdir_ex_force
     call delete(s:ctrlp_bookmark_file())
   endif
 
   let bookmark_dirs = []
 
-  if exists('g:ctrlp_bookmark_paths')
-    for path in g:ctrlp_bookmark_paths
+  if exists('g:ctrlp_bookmarkdir_ex_paths')
+    for path in g:ctrlp_bookmarkdir_ex_paths
       let dirs = map(split(expand(path, '\n')), 's:validate_path(v:val)')
       call extend(bookmark_dirs, dirs)
     endfor
   endif
 
-  if isdirectory($VIMRUNTIME) && g:ctrlp_bookmark_runtime
+  if isdirectory($VIMRUNTIME) && g:ctrlp_bookmarkdir_ex_runtime
     call add(bookmark_dirs, s:validate_path($VIMRUNTIME))
   endif
 
-  if exists('g:plugs') && g:ctrlp_bookmark_plug
+  if exists('g:plugs') && g:ctrlp_bookmarkdir_ex_plug
     call extend(bookmark_dirs, map(values(g:plugs), 'v:val.dir'))
   endif
 
-  if executable('ghq') && g:ctrlp_bookmark_ghq
+  if executable('ghq') && g:ctrlp_bookmarkdir_ex_ghq
     let dirs = map(split(system('ghq list -p'), '\n'), 's:validate_path(v:val)')
     call extend(bookmark_dirs, dirs)
   endif
 
-  call s:ctrlp_bookmark_add(g:ctrlp_bookmark_force, bookmark_dirs)
+  call s:ctrlp_bookmark_add(g:ctrlp_bookmarkdir_ex_force, bookmark_dirs)
   echo 'CtrlP: bookmark reloaded'
 endf
 
