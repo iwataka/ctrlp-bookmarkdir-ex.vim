@@ -36,7 +36,7 @@ fu! ctrlp#bookmarkdir#ex#init(bang, verbose)
 
   if exists('g:ctrlp_bookmarkdir_ex_paths')
     for path in g:ctrlp_bookmarkdir_ex_paths
-      let dirs = map(split(expand(path, '\n')), 's:validate_path(v:val)')
+      let dirs = map(split(expand(path), '\n'), 's:validate_path(v:val)')
       call extend(bookmark_dirs, dirs)
     endfor
   endif
