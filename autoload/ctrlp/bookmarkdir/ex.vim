@@ -90,7 +90,7 @@ fu! s:ctrlp_cache_dir()
 endfu
 
 fu! s:validate_path(path)
-  return substitute(resolve(fnamemodify(a:path, ':p')), '\v/*$', '', '')
+  return substitute(resolve(fnamemodify(a:path, ':p')), '\v[\\/]*$', '', '')
 endfu
 
 let &cpo = s:save_cpo
