@@ -81,12 +81,20 @@ fu! s:ctrlp_bookmark_add(force, dirs)
 endfu
 
 fu! s:ctrlp_bookmark_file()
-  return s:ctrlp_cache_dir().'/bkd/cache.txt'
+  let dir = s:ctrlp_cache_dir().'/bkd/'
+  if !isdirectory(dir)
+    call mkdir(dir)
+  endif
+  return s:validate_path(dir.'cache.txt')
 endfu
 
 fu! s:ctrlp_cache_dir()
   let dir = get(g:, 'ctrlp_cache_dir', '~/.cache/ctrlp')
-  return s:validate_path(dir)
+  let dir = s:validate_path(dir)
+  if !isdirectory(dir)
+    call mkdir(dir, 'p')
+  endif
+  return dir
 endfu
 
 fu! s:validate_path(path)
